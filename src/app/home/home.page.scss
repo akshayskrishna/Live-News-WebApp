@@ -25,3 +25,38 @@
 #container a {
   text-decoration: none;
 }
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-button {
+  --color: #000000;
+  --background: #33ff99;
+}
+.blah {
+  --background: #33ff99;
+}
+.mainbody {
+  --background: #000000;
+}
+
+ion-card {
+  --background: #000000;
+}
+
+.text {
+  --color: #ffffff;
+}
+
+.headingTitle {
+  --color: #ffffff;
+  --type: large;
+}
+
+.searchBar {
+  --background: #000000;
+  --color: #ffffff;
+}

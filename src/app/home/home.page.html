@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="blah">
     <ion-title>
-      Blank
+      Live News
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,61 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">News Portal</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-searchbar
+    animated
+    class="searchBar"
+    (search)="searchEvent($event.target.value)"
+  ></ion-searchbar>
+  <div>
+    <ion-content class="mainbody" *ngFor="let report of reply">
+      <ion-title> Weather: {{ report.weather.main }} </ion-title>
+    </ion-content>
   </div>
+
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="changeToTechnology()">
+          Technology
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="changeToInternship()">
+          Internship
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="changeToWallStreet()">
+          Wall Street
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="changeToSports()">
+          Sports
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="card" *ngFor="let item of data">
+    <ion-card-header>
+      <img [src]="item.urlToImage" />
+
+      <ion-card-title class="text">{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="text">
+      Source: {{item.source.name}}<br />
+      {{ item.description }}<br /><br />
+      Published: {{item.publishedAt}}<br />
+      <a target="_blank" [href]="item.url"
+        ><ion-button (click)="InAppB(item.url)" class="button" expand="block">
+          Read More</ion-button
+        ></a
+      >
+    </ion-card-content>
+  </ion-card>
 </ion-content>
