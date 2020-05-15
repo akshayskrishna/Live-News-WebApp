@@ -27,12 +27,10 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-ion-button {
+.cardButton {
   --color: #000000;
   --background: #33ff99;
 }
@@ -59,4 +57,12 @@ ion-card {
 .searchBar {
   --background: #000000;
   --color: #ffffff;
+}
+
+.menuButton {
+  --color: #fff;
+}
+
+.logobutton {
+  --fill: clear;
 }

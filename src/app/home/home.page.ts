@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../api.service";
-import { NavController } from "@ionic/angular";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
-import { Geolocation } from "@ionic-native/geolocation/ngx";
 
 @Component({
   selector: "app-home",
@@ -11,42 +9,61 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
 })
 export class HomePage {
   data: any = [];
-  reply: any = [];
-  lati: any;
-  longi: any;
 
-  constructor(
-    private api: ApiService,
-    private iab: InAppBrowser,
-    private geo: Geolocation
-  ) {}
+  constructor(private api: ApiService, private iab: InAppBrowser) {}
+
+  /* Starts when app launches */
 
   ngOnInit() {
     this.mydata();
   }
 
-  /* 
-      Main Page - list of 20   
-  */
-
+  /*  Main Page - list of 20   */
   async mydata() {
     return this.api.getData().subscribe((data) => {
       this.data = data["articles"];
-      console.log(this.data);
+      //console.log(this.data);
     });
   }
 
-  /* 
-      In App Browser Function Call   
-  */
+  /* Select Category using ion-select */
+  /* Used if-else loop since API endpoints for Technology, business, sports & Wallstreet are different from search query */
+
+  seletCategory($cat) {
+    const selectCategory = $cat.target.value;
+    if (selectCategory == "technology") {
+      if (selectCategory == "business") {
+        if (selectCategory == "sports") {
+          this.mydataCatagory(selectCategory);
+        }
+      }
+    } else if (selectCategory == "Stocks") {
+      this.changeToWallStreet();
+    } else if (selectCategory == "Home") {
+    } else {
+      this.searchEvent($cat.target.value);
+    }
+    //console.log($cat.target.value);
+  }
+
+  /* Method called when search bar is invoked */
+  searchEvent(event) {
+    query: String;
+    const query = event;
+    //console.log(query);
+    return this.api.getDataBySearch(query).subscribe((data) => {
+      this.data = data["articles"];
+      //console.log(this.data);
+    });
+  }
+
+  /* In App Browser Function Call  */
 
   InAppB(readmoreUrl) {
     this.iab.create(readmoreUrl, "_blank");
   }
 
-  /*
-    Function calls from ion-buttons
-  */
+  /* Function calls to bring out queries */
 
   changeToBusiness() {
     this.mydataCatagory("business");
@@ -58,43 +75,19 @@ export class HomePage {
     this.mydataCatagory("sports");
   }
 
-  /*
-    Function passes data to ServicesAPI ion service page
-  */
+  /* Method calls API End points for pre-defined categories  */
   async mydataCatagory(category) {
     return this.api.getDatabyCategory(category).subscribe((data) => {
       this.data = data["articles"];
-      console.log(this.data);
+      //console.log(this.data);
     });
   }
 
-  /* 
-    Function calls data from WallStreet
-    Unique function written cause the API endpoints are different
-  */
-
+  /*  Method calls data from WallStreet Unique function written cause the API endpoints are different from others  */
   changeToWallStreet() {
     this.api.getDatabyCategoryToWallStreet().subscribe((data) => {
       this.data = data["articles"];
-      console.log(this.data);
-    });
-  }
-
-  changeToInternship() {
-    return this.api.getDataBySearch("Jobs Listing").subscribe((data) => {
-      this.data = data["articles"];
-      console.log(this.data);
-    });
-  }
-
-  //Function called when search bar is used
-  searchEvent(event) {
-    query: String;
-    const query = event;
-    console.log(query);
-    return this.api.getDataBySearch(query).subscribe((data) => {
-      this.data = data["articles"];
-      console.log(this.data);
+      //console.log(this.data);
     });
   }
 }

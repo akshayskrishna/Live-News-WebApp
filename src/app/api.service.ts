@@ -9,6 +9,8 @@ export class ApiService {
   public country: any = "country=us";
   public apiKey: any = "&apiKey=f48ebc4415f34c0db27d2eb48fb223c6";
 
+  /* Used to call Weather API using Geo-Cordinated collected from the ion-native function
+
   public wbaseurl: any = "api.openweathermap.org/data/2.5/weather?";
   public wapikey: any = "&appid=e60dc6b1afdbe03e3571a3333d761ba8";
 
@@ -20,6 +22,7 @@ export class ApiService {
     //this.wbaseurl + "lat=" + lat + "&lon=" + long + this.wapikey;
     //api.openweathermap.org/data/2.5/weather?lat=35&lon=75&appid=e60dc6b1afdbe03e3571a3333d761ba8
   }
+  */
 
   constructor(private http: HttpClient) {}
 
@@ -52,11 +55,14 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  //https://newsapi.org/v2/everything?q=technology&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
+  /*
+  API for Search queries news - https://newsapi.org/v2/everything?q=technology&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
 
-  //https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
+  API for Wallstreet news - https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
 
-  //http://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
+  API for Top Headlines news - http://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=f48ebc4415f34c0db27d2eb48fb223c6
 
-  //https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=J09RLAfyWqa6sLvPPQehDdvzgWq5mIey
+  API for NY Times Top Shared News - https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=J09RLAfyWqa6sLvPPQehDdvzgWq5mIey
+
+  */
 }
