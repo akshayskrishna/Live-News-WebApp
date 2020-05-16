@@ -1,20 +1,68 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar class="blah">
+    <ion-title> {{ title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title slot="start" size="large">
+        Live News
+      </ion-title>
+      <ion-icon
+        name="home"
+        size="large"
+        slot="end"
+        style="margin-right: 20px; margin-bottom: 10px;"
+        (click)="mydata()"
+      ></ion-icon>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-item>
+    <ion-label style="justify-content: center; color: #b5fad7;"
+      >Top Searches List</ion-label
+    >
+    <ion-select (ionChange)="seletCategory($event)" interface="action-sheet">
+      <ion-select-option value="internship">Internship</ion-select-option>
+      <ion-select-option value="Corona">Corona</ion-select-option>
+      <ion-select-option value="business">Business</ion-select-option>
+      <ion-select-option value="technology">Technology</ion-select-option>
+      <ion-select-option value="sports">Sports</ion-select-option>
+      <ion-select-option value="Stocks">Wall Street</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div>
+    <ion-searchbar
+      animated
+      class="searchBar"
+      (search)="searchEvent($event.target.value)"
+      showCancelButton="focus"
+      enterkeyhint="Search"
+      class="searchBarFeatures"
+    ></ion-searchbar>
   </div>
+
+  <ion-card class="card" *ngFor="let item of data">
+    <img [src]="item.urlToImage" />
+    <ion-card-header>
+      <ion-card-title class="text">{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="text">
+      Source: {{item.source.name}}<br />
+      {{ item.description }}<br /><br />
+      Published: {{item.publishedAt}}<br />
+      <a target="_blank" [href]="item.url"
+        ><ion-button
+          (click)="InAppB(item.url)"
+          class="cardButton"
+          expand="block"
+          style="color: #000000;"
+        >
+          Read More</ion-button
+        ></a
+      >
+    </ion-card-content>
+  </ion-card>
 </ion-content>

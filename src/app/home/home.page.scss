@@ -25,3 +25,55 @@
 #container a {
   text-decoration: none;
 }
+
+.grid {
+  justify-content: center;
+}
+
+.cardButton {
+  --color: #000000;
+  --background: #33ff99;
+}
+.blah {
+  --background: #33ff99;
+}
+.mainbody {
+  --background: #000000;
+}
+
+ion-card {
+  --background: #212121;
+}
+
+.text {
+  --color: #ffffff;
+}
+
+.headingTitle {
+  --color: #ffffff;
+  --type: large;
+}
+
+.searchBar {
+  --background: #000000;
+  --color: #ffffff;
+}
+
+.menuButton {
+  --color: #fff;
+}
+
+.logobutton {
+  --fill: clear;
+}
+
+.toolbarTitle {
+  font-size: 50px;
+}
+
+.searchBarFeatures {
+  --clear-button-color: #f44336;
+  // --placeholder-color: #b9f6ca;
+  --cancel-button-color: #f44336;
+  --placeholder-opacity: 50%;
+}
