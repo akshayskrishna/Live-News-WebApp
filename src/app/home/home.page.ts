@@ -100,6 +100,8 @@ export class HomePage {
 
 /* 
 
+            Implementing the right code formatting for ion-select
+
 <ion-content padding>
 
   <ion-list>
@@ -145,11 +147,11 @@ import { Router } from '@angular/router';
 constructor(private router: Router) {}
 
 ngOnInit() {
-    // do init at here for current route.
 
     setTimeout(() => {
         this.router.navigate(['nextRoute']);
     }, 5000);  //5s
+
 }
 
 */
