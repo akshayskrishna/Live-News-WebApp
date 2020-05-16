@@ -1,27 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="blah">
-    <ion-title>
-      Live News
-    </ion-title>
+    <ion-title> {{ title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar class="grid">
-      <ion-button
+    <ion-toolbar>
+      <ion-title slot="start" size="large">
+        Live News
+      </ion-title>
+      <ion-icon
+        name="home"
+        size="large"
+        slot="end"
+        style="margin-right: 20px; margin-bottom: 10px;"
         (click)="mydata()"
-        class="logobutton"
-        fill="clear"
-        strong="true"
-        >Live News</ion-button
-      >
+      ></ion-icon>
     </ion-toolbar>
   </ion-header>
 
   <ion-item>
-    <ion-label>Top Selections</ion-label>
-    <ion-select (ionChange)="seletCategory($event)">
+    <ion-label style="justify-content: center; color: #b5fad7;"
+      >Top Searches List</ion-label
+    >
+    <ion-select (ionChange)="seletCategory($event)" interface="action-sheet">
       <ion-select-option value="internship">Internship</ion-select-option>
       <ion-select-option value="Corona">Corona</ion-select-option>
       <ion-select-option value="business">Business</ion-select-option>
@@ -35,13 +38,15 @@
       animated
       class="searchBar"
       (search)="searchEvent($event.target.value)"
+      showCancelButton="focus"
+      enterkeyhint="Search"
+      class="searchBarFeatures"
     ></ion-searchbar>
   </div>
 
   <ion-card class="card" *ngFor="let item of data">
+    <img [src]="item.urlToImage" />
     <ion-card-header>
-      <img [src]="item.urlToImage" />
-
       <ion-card-title class="text">{{ item.title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="text">
@@ -53,6 +58,7 @@
           (click)="InAppB(item.url)"
           class="cardButton"
           expand="block"
+          style="color: #000000;"
         >
           Read More</ion-button
         ></a

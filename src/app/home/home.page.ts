@@ -9,6 +9,9 @@ import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 })
 export class HomePage {
   data: any = [];
+  title: string = "Home";
+  searchquery: string;
+  techVar: string = "technology";
 
   constructor(private api: ApiService, private iab: InAppBrowser) {}
 
@@ -31,6 +34,7 @@ export class HomePage {
 
   seletCategory($cat) {
     const selectCategory = $cat.target.value;
+    this.searchquery == selectCategory;
     if (selectCategory == "technology") {
       if (selectCategory == "business") {
         if (selectCategory == "sports") {
@@ -39,11 +43,11 @@ export class HomePage {
       }
     } else if (selectCategory == "Stocks") {
       this.changeToWallStreet();
-    } else if (selectCategory == "Home") {
+      this.title = "Wall Street";
     } else {
       this.searchEvent($cat.target.value);
+      //console.log(this.title);
     }
-    //console.log($cat.target.value);
   }
 
   /* Method called when search bar is invoked */
@@ -53,6 +57,7 @@ export class HomePage {
     //console.log(query);
     return this.api.getDataBySearch(query).subscribe((data) => {
       this.data = data["articles"];
+      this.title = query;
       //console.log(this.data);
     });
   }
@@ -70,6 +75,7 @@ export class HomePage {
   }
   changeToTechnology() {
     this.mydataCatagory("technology");
+    //this.mydataCatagory("technology");
   }
   changeToSports() {
     this.mydataCatagory("sports");
@@ -91,3 +97,59 @@ export class HomePage {
     });
   }
 }
+
+/* 
+
+<ion-content padding>
+
+  <ion-list>
+  <ion-item>
+    <ion-label>PROJECT</ion-label>
+    <ion-select [(ngModel)]="project">
+      <ion-option *ngFor="let project of projects" value="{{project}}">{{project}}</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<button *ngIf="project" ion-button (click)="reset()">clear</button>
+
+</ion-content>
+
+
+.ts File
+
+export class HomePage {
+
+  projects: any = [];
+  project: string;
+
+  constructor() {
+    this.projects = ["project 1", "project 2", "project 3", "project 4"];
+  }
+
+  reset() {
+    this.project = null;
+  }
+}
+
+
+*/
+
+/* 
+
+              IDEA FOR SPLASH SCREEN 
+CREATE A PAGE ADD CSS AND JUMP TO MAIN PAGE AFTER 10secs
+
+import { Router } from '@angular/router';
+
+constructor(private router: Router) {}
+
+ngOnInit() {
+    // do init at here for current route.
+
+    setTimeout(() => {
+        this.router.navigate(['nextRoute']);
+    }, 5000);  //5s
+}
+
+*/

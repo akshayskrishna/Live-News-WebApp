@@ -42,7 +42,7 @@
 }
 
 ion-card {
-  --background: #000000;
+  --background: #212121;
 }
 
 .text {
@@ -65,4 +65,15 @@ ion-card {
 
 .logobutton {
   --fill: clear;
+}
+
+.toolbarTitle {
+  font-size: 50px;
+}
+
+.searchBarFeatures {
+  --clear-button-color: #f44336;
+  // --placeholder-color: #b9f6ca;
+  --cancel-button-color: #f44336;
+  --placeholder-opacity: 50%;
 }
