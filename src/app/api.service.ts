@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class ApiService {
   public baseUrl: any = "https://newsapi.org/v2/";
   public country: any = "country=us";
-  public apiKey: any = "&apiKey=f48ebc4415f34c0db27d2eb48fb223c6";
+  public apiKey: any = "&apiKey=99a02cdc402f4fb8996a0eb2e25d8816";
 
   /* Used to call Weather API using Geo-Cordinated collected from the ion-native function
 
@@ -24,7 +24,7 @@ export class ApiService {
   }
   */
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getData() {
     const url = this.baseUrl + "top-headlines?" + this.country + this.apiKey;

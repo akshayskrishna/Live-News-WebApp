@@ -1,6 +1,10 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../api.service";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
+import { NavController } from '@ionic/angular';
+import { PinService, Structure } from '../service/pin.service'
+
+import { Url } from 'url';
 
 @Component({
   selector: "app-home",
@@ -13,19 +17,22 @@ export class HomePage {
   searchquery: string;
   techVar: string = "technology";
 
-  constructor(private api: ApiService, private iab: InAppBrowser) {}
+
+
+  constructor(private api: ApiService, private iab: InAppBrowser, private navCtrl: NavController, private pinService: PinService) { }
 
   /* Starts when app launches */
 
   ngOnInit() {
     this.mydata();
+
   }
 
   /*  Main Page - list of 20   */
   async mydata() {
     return this.api.getData().subscribe((data) => {
       this.data = data["articles"];
-      //console.log(this.data);
+      console.log(this.data);
     });
   }
 
@@ -96,9 +103,41 @@ export class HomePage {
       //console.log(this.data);
     });
   }
+  /*
+  
+    public Pinurl: Url;
+    public PinTitle: string;
+    public PinDesc: string;
+    public PinImg: Url;
+  
+    public pinButton(event, item) {
+      item: item;
+      this.PinTitle = item.title;
+      this.PinDesc = item.description;
+      this.PinImg = item.urlToImage;
+      this.Pinurl = item.url
+      this.savePin(item);
+  
+  
+  
+      //console.log(item);
+    }
+  
+  
+    savePin(item) {
+      this.pinService.addPinItem(item);
+      console.log(this.PinTitle);
+  
+    }
+  
+  */
+
+
 }
 
-/* 
+// 
+//[routerLink]="'/pin/' + item.title"
+/*
 
             Implementing the right code formatting for ion-select
 
@@ -137,9 +176,9 @@ export class HomePage {
 
 */
 
-/* 
+/*
 
-              IDEA FOR SPLASH SCREEN 
+              IDEA FOR SPLASH SCREEN
 CREATE A PAGE ADD CSS AND JUMP TO MAIN PAGE AFTER 10secs
 
 import { Router } from '@angular/router';

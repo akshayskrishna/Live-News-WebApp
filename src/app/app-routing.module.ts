@@ -17,6 +17,19 @@ const routes: Routes = [
     loadChildren: () =>
       import("./splash/splash.module").then((m) => m.SplashPageModule),
   },
+  {
+    path: 'details',
+    loadChildren: () => import('./pages/pin-details/pin-details.module').then(m => m.PinDetailsPageModule)
+  },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./pages/pin-details/pin-details.module').then(m => m.PinDetailsPageModule)
+  },
+  {
+    path: 'pin',
+    loadChildren: () => import('./pages/pin-display/pin-display.module').then(m => m.PinDisplayPageModule)
+  },
+
 ];
 
 @NgModule({
@@ -25,4 +38,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

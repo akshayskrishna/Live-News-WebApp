@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "finalweek-a68d3"
+  },
+  "targets": {
+    "finalweek-a68d3": {
+      "hosting": {
+        "app": [
+          "finalweek-a68d3"
+        ]
+      }
+    }
   }
 }
