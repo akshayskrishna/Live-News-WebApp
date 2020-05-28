@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class ApiService {
   public baseUrl: any = "https://newsapi.org/v2/";
   public country: any = "country=us";
-  public apiKey: any = "&apiKey=f48ebc4415f34c0db27d2eb48fb223c6";
+  public apiKey: any = "&apiKey=99a02cdc402f4fb8996a0eb2e25d8816";
 
   /* Used to call Weather API using Geo-Cordinated collected from the ion-native function
 
@@ -24,15 +24,21 @@ export class ApiService {
   }
   */
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getData() {
-    const url = this.baseUrl + "top-headlines?" + this.country + this.apiKey;
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = proxyurl + this.baseUrl + "top-headlines?" + this.country + this.apiKey;
+    // fetch(url) // https://cors-anywhere.herokuapp.com/https://example.com
+    //   .then(response => response.json())
+    //   .then(contents => console.log(contents))
+    //   .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     return this.http.get(url);
   }
 
   getDatabyCategory(category) {
-    const url =
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = proxyurl +
       this.baseUrl +
       "top-headlines?" +
       this.country +
@@ -42,7 +48,8 @@ export class ApiService {
     return this.http.get(url);
   }
   getDatabyCategoryToWallStreet() {
-    const url =
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = proxyurl +
       this.baseUrl +
       "everything?" +
       "domains=wsj.com,nytimes.com" +
@@ -51,7 +58,8 @@ export class ApiService {
   }
 
   getDataBySearch(search) {
-    const url = this.baseUrl + "everything?q=" + search + this.apiKey;
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = proxyurl + this.baseUrl + "everything?q=" + search + this.apiKey;
     return this.http.get(url);
   }
 
