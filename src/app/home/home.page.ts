@@ -17,6 +17,12 @@ export class HomePage {
   searchquery: string;
   techVar: string = "technology";
 
+  public PinTitle: string;
+  public Pinurl: Url;
+  public PinDesc: string;
+  public PinImg: Url;
+
+
 
 
   constructor(private api: ApiService, private iab: InAppBrowser, private navCtrl: NavController, private pinService: PinService) { }
@@ -103,34 +109,30 @@ export class HomePage {
       //console.log(this.data);
     });
   }
-  /*
-  
-    public Pinurl: Url;
-    public PinTitle: string;
-    public PinDesc: string;
-    public PinImg: Url;
-  
-    public pinButton(event, item) {
-      item: item;
-      this.PinTitle = item.title;
-      this.PinDesc = item.description;
-      this.PinImg = item.urlToImage;
-      this.Pinurl = item.url
-      this.savePin(item);
-  
-  
-  
-      //console.log(item);
-    }
-  
-  
-    savePin(item) {
-      this.pinService.addPinItem(item);
-      console.log(this.PinTitle);
-  
-    }
-  
-  */
+
+
+
+  public pinButton(event, item) {
+    item: item;
+    this.PinTitle = item.title;
+    this.PinDesc = item.description;
+    this.PinImg = item.urlToImage;
+    this.Pinurl = item.url
+    // this.savePin(item);
+
+
+
+    console.log(item.title);
+  }
+
+
+  savePin(item) {
+    this.pinService.addPinItem(item);
+    console.log(this.PinTitle);
+
+  }
+
+
 
 
 }
