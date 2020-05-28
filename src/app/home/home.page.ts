@@ -13,7 +13,7 @@ export class HomePage {
   searchquery: string;
   techVar: string = "technology";
 
-  constructor(private api: ApiService, private iab: InAppBrowser) {}
+  constructor(private api: ApiService, private iab: InAppBrowser) { }
 
   /* Starts when app launches */
 
@@ -98,60 +98,4 @@ export class HomePage {
   }
 }
 
-/* 
 
-            Implementing the right code formatting for ion-select
-
-<ion-content padding>
-
-  <ion-list>
-  <ion-item>
-    <ion-label>PROJECT</ion-label>
-    <ion-select [(ngModel)]="project">
-      <ion-option *ngFor="let project of projects" value="{{project}}">{{project}}</ion-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-
-<button *ngIf="project" ion-button (click)="reset()">clear</button>
-
-</ion-content>
-
-
-.ts File
-
-export class HomePage {
-
-  projects: any = [];
-  project: string;
-
-  constructor() {
-    this.projects = ["project 1", "project 2", "project 3", "project 4"];
-  }
-
-  reset() {
-    this.project = null;
-  }
-}
-
-
-*/
-
-/* 
-
-              IDEA FOR SPLASH SCREEN 
-CREATE A PAGE ADD CSS AND JUMP TO MAIN PAGE AFTER 10secs
-
-import { Router } from '@angular/router';
-
-constructor(private router: Router) {}
-
-ngOnInit() {
-
-    setTimeout(() => {
-        this.router.navigate(['nextRoute']);
-    }, 5000);  //5s
-
-}
-
-*/
