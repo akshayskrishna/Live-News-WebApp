@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Url } from 'url';
-import { Observable } from 'rxjs';
+
 import { map } from 'rxjs/operators';
+import { Url } from 'url';
 
 export interface Structure {
   heading: string;
+  description: string;
+  imgUrl: string;
+  articleUrl: string;
 }
 
 @Injectable({
@@ -44,7 +47,8 @@ export class PinService {
     return this.newspin.doc(id).delete();
   }
   addPin(structure: Structure) {
-    return this.newspin.add(structure);
+    console.log("Pin Saved")
+    return this.newspin.add({ ...structure });
   }
   addPinItem(item) {
     const title = item.title;

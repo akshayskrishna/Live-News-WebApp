@@ -8,6 +8,7 @@ export class ApiService {
   public baseUrl: any = "https://newsapi.org/v2/";
   public country: any = "country=us";
   public apiKey: any = "&apiKey=99a02cdc402f4fb8996a0eb2e25d8816";
+  public proxyurl = "https://cors-anywhere.herokuapp.com/";
 
   /* Used to call Weather API using Geo-Cordinated collected from the ion-native function
 
@@ -27,7 +28,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getData() {
-    const url = this.baseUrl + "top-headlines?" + this.country + this.apiKey;
+    const url = this.proxyurl + this.baseUrl + "top-headlines?" + this.country + this.apiKey;
     return this.http.get(url);
   }
 
