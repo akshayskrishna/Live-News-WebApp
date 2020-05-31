@@ -12,6 +12,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +25,7 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     StatusBar,
@@ -30,4 +36,4 @@ import { Geolocation } from "@ionic-native/geolocation/ngx";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

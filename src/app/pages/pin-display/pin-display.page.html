@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pinDisplay</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card" *ngFor="let item of struct">
+    <img [src]="struct.imgUrl" />
+    <ion-card-header>
+      <ion-card-title class="text">{{ struct.heading }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="text">
+      {{ struct.description }}<br /><br />
+      <a target="_blank" [href]="struct.articleUrl"
+        ><ion-button
+          (click)="InAppB(item.url)"
+          class="cardButton"
+          expand="block"
+          style="color: #000000;"
+        >
+          Read More</ion-button
+        ></a
+      >
+    </ion-card-content>
+  </ion-card>
+</ion-content>

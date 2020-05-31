@@ -10,6 +10,7 @@
       <ion-title slot="start" size="large">
         Live News
       </ion-title>
+      <ion-icon slot="start" name="add" routerLink="/pin"></ion-icon>
       <ion-icon
         name="home"
         size="large"
@@ -63,6 +64,10 @@
           Read More</ion-button
         ></a
       >
+
+      <ion-button (click)="pinButton($event, item)" shape="round">
+        Pin
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

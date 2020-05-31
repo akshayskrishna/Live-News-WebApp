@@ -1,6 +1,10 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../api.service";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
+import { NavController } from '@ionic/angular';
+import { PinService, Structure } from '../service/pin.service'
+
+import { Url } from 'url';
 
 @Component({
   selector: "app-home",
@@ -13,19 +17,33 @@ export class HomePage {
   searchquery: string;
   techVar: string = "technology";
 
-  constructor(private api: ApiService, private iab: InAppBrowser) {}
+  public PinTitle: string;
+  public Pinurl: string;
+  public PinDesc: string;
+  public PinImg: string;
+
+  structure: Structure = {
+    heading: "",
+    description: "",
+    imgUrl: "",
+    articleUrl: "",
+  }
+
+
+  constructor(private api: ApiService, private iab: InAppBrowser, private navCtrl: NavController, private pinService: PinService) { }
 
   /* Starts when app launches */
 
   ngOnInit() {
     this.mydata();
+
   }
 
   /*  Main Page - list of 20   */
   async mydata() {
     return this.api.getData().subscribe((data) => {
       this.data = data["articles"];
-      //console.log(this.data);
+      console.log(this.data);
     });
   }
 
@@ -96,9 +114,41 @@ export class HomePage {
       //console.log(this.data);
     });
   }
+
+
+
+  public pinButton(event, item) {
+    item: item;
+    this.PinTitle = item.title;
+    this.PinDesc = item.description;
+    this.PinImg = item.urlToImage;
+    this.Pinurl = item.url
+
+    this.structure['heading'] = this.PinTitle;
+    this.structure['description'] = this.PinDesc;
+    this.structure['imgUrl'] = this.PinImg;
+    this.structure['articleUrl'] = this.Pinurl;
+    console.log(this.structure);
+
+    this.savePin(this.structure);
+
+  }
+
+
+  savePin(structure) {
+    this.pinService.addPin({ ...this.structure });
+
+
+  }
+
+
+
+
 }
 
-/* 
+// 
+//[routerLink]="'/pin/' + item.title"
+/*
 
             Implementing the right code formatting for ion-select
 
@@ -137,9 +187,9 @@ export class HomePage {
 
 */
 
-/* 
+/*
 
-              IDEA FOR SPLASH SCREEN 
+              IDEA FOR SPLASH SCREEN
 CREATE A PAGE ADD CSS AND JUMP TO MAIN PAGE AFTER 10secs
 
 import { Router } from '@angular/router';
